@@ -4,7 +4,7 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, $mdSidenav) {
+function AppController(MenuDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
@@ -14,11 +14,11 @@ function AppController(UsersDataService, $mdSidenav) {
 
   // Load all registered users
 
-  UsersDataService
-        .loadAllUsers()
-        .then( function( users ) {
-          self.users    = [].concat(users);
-          self.selected = users[0];
+  MenuDataService
+        .loadMenu()
+        .then( function( menu ) {
+          self.users    = [].concat(menu);
+          self.selected = menu[0];
         });
 
   // *********************************
@@ -41,4 +41,4 @@ function AppController(UsersDataService, $mdSidenav) {
   }
 }
 
-export default [ 'UsersDataService', '$mdSidenav', AppController ];
+export default [ 'MenuDataService', '$mdSidenav', AppController ];

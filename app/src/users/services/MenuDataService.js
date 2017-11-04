@@ -6,8 +6,8 @@
  * @returns {{loadAll: Function}}
  * @constructor
  */
-function UsersDataService($q) {
-  var users = [
+function MenuDataService($q) {
+  var menu = [
     {
       name: 'Lia Lugo',
       avatar: 'svg-1',
@@ -42,12 +42,12 @@ function UsersDataService($q) {
 
   // Promise-based API
   return {
-    loadAllUsers: function() {
+    loadMenu: function() {
       // Simulate async nature of real remote calls
-      return $q.when(users);
+      return $q.when(menu);
     }
   };
 }
 
-export default ['$q', UsersDataService];
+export default ['$q', MenuDataService];
 
