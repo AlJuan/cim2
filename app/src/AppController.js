@@ -8,8 +8,8 @@ function AppController(MenuDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
-  self.users        = [ ];
-  self.selectUser   = selectUser;
+  self.items        = [ ];
+  self.selectItem   = selectItem;
   self.toggleList   = toggleUsersList;
 
   // Load all registered users
@@ -17,7 +17,7 @@ function AppController(MenuDataService, $mdSidenav) {
   MenuDataService
         .loadMenu()
         .then( function( menu ) {
-          self.users    = [].concat(menu);
+          self.items    = [].concat(menu);
           self.selected = menu[0];
         });
 
@@ -36,8 +36,8 @@ function AppController(MenuDataService, $mdSidenav) {
    * Select the current avatars
    * @param menuId
    */
-  function selectUser ( user ) {
-    self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+  function selectItem ( item ) {
+    self.selected = angular.isNumber(item) ? $scope.items[item] : item;
   }
 }
 
