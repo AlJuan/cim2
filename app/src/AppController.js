@@ -4,7 +4,7 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(MenuDataService, $mdSidenav) {
+function AppController(MenuDataService, PlantationDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
@@ -21,13 +21,6 @@ function AppController(MenuDataService, $mdSidenav) {
           self.selected = menu[0];
         });
 
-  // *********************************
-  // Internal methods
-  // *********************************
-
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
   function toggleUsersList() {
     $mdSidenav('left').toggle();
   }
@@ -41,4 +34,4 @@ function AppController(MenuDataService, $mdSidenav) {
   }
 }
 
-export default [ 'MenuDataService', '$mdSidenav', AppController ];
+export default [ 'MenuDataService', 'PlantationDataService', '$mdSidenav', AppController ];

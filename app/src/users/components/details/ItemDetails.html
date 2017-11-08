@@ -1,2 +1,145 @@
 
 <h2>{{$ctrl.selected.name}}</h2>
+
+<md-select ng-model="selectedPlantation">
+    <md-option ng-repeat="plantation in $ctrl.plantations" ng-selected="$index == 0" value="{{plantation}}">{{plantation.name}}</md-option>
+</md-select>
+
+<div ng-if="$ctrl.selected.name == 'Estado de la plantacion'">
+
+	<md-grid-list md-cols="10" md-gutter="10px" md-row-height="1:1">
+		<md-grid-tile ng-repeat="bucket in $ctrl.plantationGrid" class="ng-style: bucket.estado == 'ok' && {background:'green'} || bucket.estado == 'error' && {background:'red'} || bucket.estado == 'warn' && {background:'yellow'} || {background:'grey	'};" ng-click="$ctrl.selectSensor(bucket)">
+
+			<span ng-if="bucket.sensor == 'agua'"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" /></svg></span>
+
+			<span ng-if="bucket.sensor == 'bug'"><i class="material-icons">bug_report</i></span>
+			<span ng-if="bucket.sensor == 'nitrato'"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#000000" d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
+</svg></span>
+
+		</md-grid-tile>
+  	</md-grid-list>
+	
+
+  	<i class="material-icons">bug_report</i> Sensor de plagas </br>
+  	<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#000000" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" />
+</svg>Sensor de humedad </br>
+  	<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#000000" d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
+</svg>Sensor de nitratos </br>
+  	<i class="material-icons">airplanemode_active</i> <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#000000" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" />
+</svg>Dron de riego </br>
+  	<i class="material-icons">airplanemode_active</i> <i class="material-icons">bug_report</i>Dron de fumigacion </br>
+
+</div>
+
+
+<div ng-if="$ctrl.selected.name == 'Sensor'">
+
+	<h4>Identificador: {{$ctrl.selectedSensor.id}}</h4>
+	<h4>Descripcion: {{$ctrl.selectedSensor.desc}}</h4>
+	<h4>Estado: {{$ctrl.selectedSensor.estado}}</h4>
+	<h4>Alarma: {{$ctrl.selectedSensor.alarm}}</h4>
+	
+	<div ng-if="$ctrl.selectedSensor.sensor == 'agua'">	
+		<h4>Humedad: {{$ctrl.selectedSensor.hum}}</h4>
+	</div>
+
+
+
+	<md-button class="md-raised md-warn" ng-click="$ctrl.closeSensor()">Volver</md-button>
+
+</div>
+
+<div ng-if="$ctrl.selected.name == 'Configuracion de la plantacion'">
+
+  	
+
+ <md-content style='{overflow: auto;}'>
+    <md-list>
+      <md-list-item class="md-3-line">
+        <div class="md-list-item-text" >
+          <h3>Sensor de humedad</h3>
+          <h4>Limites de porcentaje de humedad</h4>
+          	<div layout="row">
+	        <md-input-container class="md-block" flex="15">
+		        <label>% Min</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+
+	        <md-input-container class="md-block" flex="15">
+		        <label>% Max</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+	    	</div>
+	       </div>
+      </md-list-item>
+
+      <md-list-item class="md-3-line">
+        <div class="md-list-item-text">
+          <h3>Sensor de nitratos</h3>
+          <h4>Limites de concentracion de nitratos</h4>
+          <div layout="row">
+          	<md-input-container class="md-block" flex="15">
+		        <label>Concentracion Min</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+
+	        <md-input-container class="md-block" flex="15">
+		        <label>Concentracion Max</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+	      </div>
+        </div>
+      </md-list-item>
+
+      <md-list-item class="md-3-line">
+        <div class="md-list-item-text">
+          <h3>Sensor de plagas</h3>
+          <h4>Limites de porcentaje del sensor cubierto de plagas</h4>
+          <div layout="row">
+          	<md-input-container class="md-block" flex="15">
+		        <label>% Min</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+
+	        <md-input-container class="md-block" flex="15">
+		        <label>% Max</label>
+		        <input required type="number" step="any" min="0"
+		               max="100" ng-pattern="/^12$/" />
+	        </md-input-container>
+	      </div>
+
+         
+        </div>
+      </md-list-item>
+
+    </md-list>
+
+
+    <md-button class="md-raised md-primary">Aceptar</md-button>
+
+    <md-button class="md-raised md-warn">Cancelar</md-button>
+
+
+  </md-content>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
