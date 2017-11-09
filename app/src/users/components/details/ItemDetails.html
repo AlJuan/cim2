@@ -1,7 +1,7 @@
 
 <h2>{{$ctrl.selected.name}}</h2>
 
-<md-select ng-model="selectedPlantation">
+<md-select ng-model="selectedPlantation" ng-if="$ctrl.selected.name != 'Sensor'">
     <md-option ng-repeat="plantation in $ctrl.plantations" ng-selected="$index == 0" value="{{plantation}}">{{plantation.name}}</md-option>
 </md-select>
 
@@ -45,6 +45,10 @@
 	
 	<div ng-if="$ctrl.selectedSensor.sensor == 'agua'">	
 		<h4>Humedad: {{$ctrl.selectedSensor.hum}}</h4>
+	</div>
+
+	<div ng-if="$ctrl.selectedSensor.sensor == 'bug'">	
+		<h4>Porcentaje de medicion cubierto por plagas: {{$ctrl.selectedSensor.medic}}</h4>
 	</div>
 
 

@@ -8,9 +8,9 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
           self.plantations = [].concat(plantations);
           self.selectedPlantation = plantations[0];
         });
-  self.plantationGrid = [{}, {id:'01', desc:'Sensor de agua de la zona norte de la plantacion', sensor:'agua', alarm:'NO', estado:'ok', hum:'10%'}, {}, {}, {}, {}, {}, {sensor:'bug', estado:'ok'}, {}, {},
-  {},{},{},{},{}, {sensor:'bug', estado:'error'}, {}, {}, {}, {},
-  {}, {}, {}, {}, {}, {}, {sensor:'agua', estado:'warn'}, {}, {}, {}];
+  self.plantationGrid = [{}, {id:'01', desc:'Sensor de agua de la zona norte de la plantacion', sensor:'agua', alarm:'NO', estado:'ok', hum:'10%'}, {}, {}, {}, {}, {}, {id:'02', desc:'Sensor de plagas de la zona noreste de la plantacion',sensor:'bug', estado:'ok',  alarm:'NO', medic:"0.01%"}, {}, {},
+  {},{},{},{},{}, {id:'03', desc:'Sensor de plagas de la zona media de la plantacion',sensor:'bug', estado:'warn',  alarm:'NO', medic:'2%'}, {}, {}, {}, {},
+  {}, {}, {}, {}, {}, {}, {id:'04', desc:'Sensor de agua de la zona sur de la plantacion', sensor:'agua', estado:'error' , alarm:'SI', hum:'10%'}, {}, {}, {}];
   
   self.selectSensor = function(bucket) {
       if (bucket.id){
@@ -25,9 +25,4 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
 
 }
 
-
-
-
-
 export default ItemDetailsController;
-
