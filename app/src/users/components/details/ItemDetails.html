@@ -73,11 +73,15 @@
 	<h4>Alarma: {{$ctrl.selectedSensor.alarm}}</h4>
 	
 	<div ng-if="$ctrl.selectedSensor.sensor == 'agua'">	
+		
 		<h4>Humedad: {{$ctrl.selectedSensor.hum}}</h4>
+		<md-button ng-disabled="$ctrl.selectedSensor.estado == 'ok'" class="md-raised md-primary">Enviar dron de riego</md-button>
 	</div>
 
-	<div ng-if="$ctrl.selectedSensor.sensor == 'bug'">	
+	<div ng-if="$ctrl.selectedSensor.sensor == 'bug'">
+		
 		<h4>Porcentaje de medicion cubierto por plagas: {{$ctrl.selectedSensor.medic}}</h4>
+		<md-button ng-disabled="$ctrl.selectedSensor.estado == 'ok'" class="md-raised md-primary">Enviar dron de fumigacion</md-button>
 	</div>
 
 	<md-menu>
