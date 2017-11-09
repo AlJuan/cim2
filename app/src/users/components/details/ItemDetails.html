@@ -33,6 +33,35 @@
 </svg>Dron de riego </br>
   	<i class="material-icons">airplanemode_active</i> <i class="material-icons">bug_report</i>Dron de fumigacion </br>
 
+
+    <md-menu>
+      <md-button class="md-raised md-primary" ng-click="$ctrl.openMenu($mdMenu, $event)">
+        Generar reporte
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="">
+            Diario
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">
+            Mensual
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">
+            Anual
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+	
+    
+
+
+
+
 </div>
 
 
@@ -51,7 +80,28 @@
 		<h4>Porcentaje de medicion cubierto por plagas: {{$ctrl.selectedSensor.medic}}</h4>
 	</div>
 
-
+	<md-menu>
+      <md-button class="md-raised md-primary" ng-click="$ctrl.openMenu($mdMenu, $event)">
+        Generar reporte
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="">
+            Diario
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">
+            Mensual
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">
+            Anual
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
 
 	<md-button class="md-raised md-warn" ng-click="$ctrl.closeSensor()">Volver</md-button>
 
@@ -134,16 +184,17 @@
 
 
   </md-content>
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
+<div ng-if="$ctrl.selected.name == 'Dron'">
+
+	<md-content layout="row">
+		<img style="width: 100%;" src="dron_water.jpg"></img> 
+	</md-content>
+	
+
+	<md-button class="md-raised md-primary">Enviar dron de fumigacion</md-button>
+
+    <md-button class="md-raised md-primary">Enviar dron de riego</md-button>
+
+</div>

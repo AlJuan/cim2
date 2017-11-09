@@ -23,6 +23,13 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
     self.selected.name = 'Estado de la plantacion';
   }
 
+  var originatorEv;
+
+    self.openMenu = function($mdMenu, ev) {
+      originatorEv = ev;
+      $mdMenu.open(ev);
+    };
+
 }
 
 export default ItemDetailsController;
