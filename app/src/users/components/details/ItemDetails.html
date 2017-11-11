@@ -8,15 +8,19 @@
 <div ng-if="$ctrl.selected.name == 'Estado de la plantacion'">
 
 	<md-grid-list md-cols="10" md-gutter="10px" md-row-height="1:1">
-		<md-grid-tile ng-repeat="bucket in $ctrl.plantationGrid" class="ng-style: bucket.estado == 'ok' && {background:'green'} || bucket.estado == 'error' && {background:'red'} || bucket.estado == 'warn' && {background:'yellow'} || {background:'grey	'};" ng-click="$ctrl.selectSensor(bucket)">
+		<md-grid-tile ng-repeat="bucket in $ctrl.plantationGrid" class="ng-style: bucket.agua.estado == 'ok' && 
+		bucket.bug.estado == 'ok' && bucket.nut.estado == 'ok' && {background:'green'} || bucket.agua.estado == 'error' ||
+		bucket.bug.estado == 'error' || bucket.nut.estado == 'error' && {background:'red'} ||  {background:'yellow'};" ng-click="$ctrl.selectSensor(bucket)">
+			<div layout="column">
+				<span ng-style="{ 'font-weight': bucket.agua.estado == 'ok' ? 'normal' : 'bold' }"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" /></svg>{{bucket.agua.medic}} 
+					<span ng-if="bucket.agua.estado != 'ok'"> * </span></span>
 
-			<span ng-if="bucket.sensor == 'agua'"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" /></svg></span>
+				<span ng-style="{'font-weight': bucket.bug.estado == 'ok' ? 'normal' : 'bold' }"><i class="material-icons">bug_report</i>{{bucket.bug.medic}}<span ng-if="bucket.bug.estado != 'ok'"> * </span></span>
 
-			<span ng-if="bucket.sensor == 'bug'"><i class="material-icons">bug_report</i></span>
-			<span ng-if="bucket.sensor == 'nitrato'"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#000000" d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
-</svg></span>
-
+				<span ng-style="{'font-weight': bucket.nut.estado == 'ok' ? 'normal' : 'bold' }"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+			    <path fill="#000000" d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
+				</svg> {{bucket.nut.medic}} <span ng-if="bucket.nut.estado != 'ok'"> * </span></span>
+			</div>
 		</md-grid-tile>
   	</md-grid-list>
 	
@@ -57,32 +61,48 @@
       </md-menu-content>
     </md-menu>
 	
-    
-
-
-
-
 </div>
 
 
-<div ng-if="$ctrl.selected.name == 'Sensor'">
+<div style="height: 80%; overflow-y: auto" ng-if="$ctrl.selected.name == 'Sensor'">
 
-	<h4>Identificador: {{$ctrl.selectedSensor.id}}</h4>
-	<h4>Descripcion: {{$ctrl.selectedSensor.desc}}</h4>
-	<h4>Estado: {{$ctrl.selectedSensor.estado}}</h4>
-	<h4>Alarma: {{$ctrl.selectedSensor.alarm}}</h4>
+	<h3>Sensor de agua</h3>
+
+	<h4>Identificador: {{$ctrl.selectedSensor.agua.id}}</h4>
+	<h4>Descripcion: {{$ctrl.selectedSensor.agua.desc}}</h4>
+	<h4>Estado: {{$ctrl.selectedSensor.agua.estado}}</h4>
+	<h4>Alarma: {{$ctrl.selectedSensor.agua.alarm}}</h4>
+	<div layout="row">
+		<h4>Humedad: {{$ctrl.selectedSensor.agua.medic}}</h4>
+		<md-button ng-disabled="$ctrl.selectedSensor.agua.estado == 'ok'" class="md-raised md-primary">Enviar dron de riego</md-button>
+	</div>
+
+	<h3>Sensor de nutrientes</h3>
+
+	<h4>Identificador: {{$ctrl.selectedSensor.nut.id}}</h4>
+	<h4>Descripcion: {{$ctrl.selectedSensor.nut.desc}}</h4>
+	<h4>Estado: {{$ctrl.selectedSensor.nut.estado}}</h4>
+	<h4>Alarma: {{$ctrl.selectedSensor.nut.alarm}}</h4>
+
+	<div layout="row">
+		<h4>Concentracion de nutrientes: {{$ctrl.selectedSensor.nut.medic}}</h4>
+	</div>
 	
-	<div ng-if="$ctrl.selectedSensor.sensor == 'agua'">	
-		
-		<h4>Humedad: {{$ctrl.selectedSensor.hum}}</h4>
-		<md-button ng-disabled="$ctrl.selectedSensor.estado == 'ok'" class="md-raised md-primary">Enviar dron de riego</md-button>
+	<h3>Sensor de plagas</h3>
+
+	<h4>Identificador: {{$ctrl.selectedSensor.bug.id}}</h4>
+	<h4>Descripcion: {{$ctrl.selectedSensor.bug.desc}}</h4>
+	<h4>Estado: {{$ctrl.selectedSensor.bug.estado}}</h4>
+	<h4>Alarma: {{$ctrl.selectedSensor.bug.alarm}}</h4>
+
+
+	<div layout="row">
+		<h4>Porcentaje de medicion cubierto por plagas: {{$ctrl.selectedSensor.bug.medic}}</h4>
+		<md-button ng-disabled="$ctrl.selectedSensor.bug.estado == 'ok'" class="md-raised md-primary">Enviar dron de fumigacion</md-button>
 	</div>
 
-	<div ng-if="$ctrl.selectedSensor.sensor == 'bug'">
-		
-		<h4>Porcentaje de medicion cubierto por plagas: {{$ctrl.selectedSensor.medic}}</h4>
-		<md-button ng-disabled="$ctrl.selectedSensor.estado == 'ok'" class="md-raised md-primary">Enviar dron de fumigacion</md-button>
-	</div>
+
+
 
 	<md-menu>
       <md-button class="md-raised md-primary" ng-click="$ctrl.openMenu($mdMenu, $event)">
