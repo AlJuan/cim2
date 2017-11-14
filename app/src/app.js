@@ -4,11 +4,13 @@ import angular from 'angular';
 import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
+import 'angular-chart';
+import '../../node_modules/chart.js/dist/Chart.js'
 
 import AppController from 'src/AppController';
 import Items from 'src/users/Items';
 
-export default angular.module( 'starter-app', [ 'ngMaterial', Items.name ] )
+export default angular.module( 'starter-app', [ 'ngMaterial', 'chart.js',Items.name ] )
   .config(($mdIconProvider, $mdThemingProvider) => {
     // Register the user `avatar` icons
     $mdIconProvider

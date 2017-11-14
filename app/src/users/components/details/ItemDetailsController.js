@@ -8,6 +8,38 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
           self.plantations = [].concat(plantations);
           self.selectedPlantation = plantations[0];
         });
+
+
+  self.dailyChart = {
+    labels: ["9/11/2017", "10/11/2017", "11/11/2017", "12/11/2017", "13/11/2017", "14/11/2017", "15/11/2017", "16/11/2017"],
+    series: ['Medicion', 'WARN','ERROR'],
+    colors: ["rgb(63,146,255)","rgb(255,255,0)","rgb(255,0,0)", "rgb(0,0,0)"],
+    data: [
+      [10, 12, 10, 14, 11, 8, 15],
+      [8, 8, 8, 8, 8, 8, 8],
+      [5, 5, 5, 5, 5, 5, 5],
+      [0, 0, 0, 0, 0, 0, 0]
+    ],
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+
+  };
+
+
   self.plantationGrid = [
    {agua: {id:'01', desc:'Sensor de agua la zona norte de la plantacion', alarm:'NO', estado:'ok', medic:'10%'},
     bug: {id:'02', desc:'Sensor de plagas la zona norte de la plantacion', alarm:'NO', estado:'ok', medic:'0.02%'},
@@ -108,11 +140,19 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
   self.selectSensor = function(bucket) {
       self.selected.name = "Sensor";
       self.selectedSensor = bucket;
-  }
+  };
 
   self.closeSensor = function() {
     self.selected.name = 'Estado de la plantacion';
-  }
+  };
+
+  self.selectReporte = function(ev) {
+    self.selected.name = 'Reportes';
+  };
+
+  self.closeReporte = function() {
+    self.selected.name = 'Sensor';
+  };
 
   var originatorEv;
 

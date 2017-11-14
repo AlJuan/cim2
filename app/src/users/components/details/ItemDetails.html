@@ -1,9 +1,15 @@
 
 <h2>{{$ctrl.selected.name}}</h2>
 
-<md-select ng-model="selectedPlantation" ng-if="$ctrl.selected.name != 'Sensor'">
+<md-select ng-model="selectedPlantation" ng-if="$ctrl.selected.name != 'Sensor' && $ctrl.selected.name != 'Reportes'">
     <md-option ng-repeat="plantation in $ctrl.plantations" ng-selected="$index == 0" value="{{plantation}}">{{plantation.name}}</md-option>
 </md-select>
+
+<div style="height: 80%; overflow-y: auto" ng-if="$ctrl.selected.name == 'Reportes'">
+<canvas id="line" class="chart chart-line" chart-colors="$ctrl.dailyChart.colors" chart-data="$ctrl.dailyChart.data"
+chart-labels="$ctrl.dailyChart.labels" chart-series="$ctrl.dailyChart.series" chart-options="$ctrl.dailyChart.options">
+	</canvas>
+</div>
 
 <div ng-if="$ctrl.selected.name == 'Estado de la plantacion'">
 
@@ -38,13 +44,16 @@
   	<i class="material-icons">airplanemode_active</i> <i class="material-icons">bug_report</i>Dron de fumigacion </br>
 
 
+
+  
+
     <md-menu>
       <md-button class="md-raised md-primary" ng-click="$ctrl.openMenu($mdMenu, $event)">
         Generar reporte
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="">
+          <md-button class="md-raised md-primary" ng-click="$ctrl.selectReporte($event)">
             Diario
           </md-button>
         </md-menu-item>
@@ -102,15 +111,13 @@
 	</div>
 
 
-
-
 	<md-menu>
       <md-button class="md-raised md-primary" ng-click="$ctrl.openMenu($mdMenu, $event)">
         Generar reporte
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="">
+          <md-button class="md-raised md-primary" ng-click="$ctrl.selectReporte($event)">
             Diario
           </md-button>
         </md-menu-item>

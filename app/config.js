@@ -13,6 +13,8 @@ System.config({
     "angular": "github:angular/bower-angular@1.5.8",
     "angular-animate": "github:angular/bower-angular-animate@1.5.8",
     "angular-aria": "github:angular/bower-angular-aria@1.5.8",
+    "angular-chart": "npm:angular-chart@0.5.0",
+    "angular-chart.js": "npm:angular-chart@0.5.0",
     "angular-material": "github:angular/bower-material@master",
     "angular-messages": "github:angular/bower-angular-messages@1.5.8",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
@@ -36,6 +38,14 @@ System.config({
       "angular-aria": "github:angular/bower-angular-aria@1.5.8",
       "angular-messages": "github:angular/bower-angular-messages@1.5.8",
       "css": "github:systemjs/plugin-css@0.1.21"
+    },
+    "npm:angular-chart@0.5.0": {
+      "angular": "npm:angular@1.6.6",
+      "c3": "npm:c3@0.4.18"
+    },
+    "npm:c3@0.4.18": {
+      "css": "github:systemjs/plugin-css@0.1.21",
+      "d3": "npm:d3@3.5.17"
     }
   }
 });
