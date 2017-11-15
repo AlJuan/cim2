@@ -15,29 +15,76 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
     series: ['Medicion', 'WARN','ERROR'],
     colors: ["rgb(63,146,255)","rgb(255,255,0)","rgb(255,0,0)", "rgb(0,0,0)"],
     data: [
-      [10, 12, 10, 14, 11, 8, 15],
-      [8, 8, 8, 8, 8, 8, 8],
-      [5, 5, 5, 5, 5, 5, 5],
-      [0, 0, 0, 0, 0, 0, 0]
+      [10, 12, 10, 14, 11, 8, 15, 16],
+      [10, 10, 10, 10, 10, 10, 10, 10],
+      [5, 5, 5, 5, 5, 5, 5, 5]
     ],
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          display: true,
-          position: 'left'
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
+    options: {
+      legend: {
+        display: true
+      },                                                                                             
+      scales: {
+        yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max:30}}]
+      }
     }
-
   };
+
+self.generalChart = {
+    labels: ["9/11/2017", "10/11/2017", "11/11/2017", "12/11/2017", "13/11/2017", "14/11/2017", "15/11/2017", "16/11/2017"],
+    series: ['Medicion', 'WARN','ERROR'],
+    colors: ["rgb(63,146,255)","rgb(255,255,0)","rgb(255,0,0)"],
+    data: [
+      [30, 30, 28, 24, 29, 28, 30, 28],
+      [0, 0, 0, 4, 0, 2, 0, 1],
+      [0, 0, 2, 2, 1, 0, 0, 1]
+    ],
+    options: {
+      legend: {
+        display: true
+      }
+    }
+  };
+
+
+self.dailyChartNut = {
+    labels: ["9/11/2017", "10/11/2017", "11/11/2017", "12/11/2017", "13/11/2017", "14/11/2017", "15/11/2017", "16/11/2017"],
+    series: ['Medicion', 'WARN','ERROR'],
+    colors: ["rgb(63,146,255)","rgb(255,255,0)","rgb(255,0,0)", "rgb(0,0,0)"],
+    data: [
+      [10, 12, 10, 14, 11, 8, 5, 0],
+      [8, 8, 8, 8, 8, 8, 8, 8],
+      [5, 5, 5, 5, 5, 5, 5, 5]
+    ],
+    options: {
+      legend: {
+        display: true
+      },                                                                                             
+      scales: {
+        yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max:30}}]
+      }
+    }
+  };
+
+  self.dailyChartBug = {
+    labels: ["9/11/2017", "10/11/2017", "11/11/2017", "12/11/2017", "13/11/2017", "14/11/2017", "15/11/2017", "16/11/2017"],
+    series: ['Medicion', 'WARN','ERROR'],
+    colors: ["rgb(63,146,255)","rgb(255,255,0)","rgb(255,0,0)", "rgb(0,0,0)"],
+    data: [
+      [10, 12, 10, 14, 18, 19, 20, 24],
+      [20, 20, 20, 20, 20, 20, 20, 20],
+      [25, 25, 25, 25, 25, 25, 25, 25]
+    ],
+    options: {
+      legend: {
+        display: true
+      },                                                                                             
+      scales: {
+        yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max:50}}]
+      },
+      elements: {line: {fill: false}}
+    }
+  };
+
 
 
   self.plantationGrid = [
@@ -148,6 +195,14 @@ function ItemDetailsController($mdBottomSheet, $log, PlantationDataService){
 
   self.selectReporte = function(ev) {
     self.selected.name = 'Reportes';
+  };
+
+  self.selectReporteGeneral = function(ev) {
+    self.selected.name = 'Reporte General';
+  };
+
+  self.closeReporteGeneral = function(ev) {
+    self.selected.name = 'Estado de la plantacion';
   };
 
   self.closeReporte = function() {

@@ -1,15 +1,43 @@
 
 <h2>{{$ctrl.selected.name}}</h2>
 
-<md-select ng-model="selectedPlantation" ng-if="$ctrl.selected.name != 'Sensor' && $ctrl.selected.name != 'Reportes'">
+<md-select ng-model="selectedPlantation" ng-if="$ctrl.selected.name != 'Sensor' && $ctrl.selected.name != 'Reportes' && $ctrl.selected.name != 'Reporte General'">
     <md-option ng-repeat="plantation in $ctrl.plantations" ng-selected="$index == 0" value="{{plantation}}">{{plantation.name}}</md-option>
 </md-select>
 
-<div style="height: 80%; overflow-y: auto" ng-if="$ctrl.selected.name == 'Reportes'">
+<div style="height: 80%; overflow-y: auto; overflow-x: auto;" ng-if="$ctrl.selected.name == 'Reportes'">
+	<h3>Sensor de agua</h3>
 <canvas id="line" class="chart chart-line" chart-colors="$ctrl.dailyChart.colors" chart-data="$ctrl.dailyChart.data"
 chart-labels="$ctrl.dailyChart.labels" chart-series="$ctrl.dailyChart.series" chart-options="$ctrl.dailyChart.options">
 	</canvas>
+<h3>Sensor de nutrientes</h3>
+<canvas id="line" class="chart chart-line" chart-colors="$ctrl.dailyChartNut.colors" chart-data="$ctrl.dailyChartNut.data"
+chart-labels="$ctrl.dailyChartNut.labels" chart-series="$ctrl.dailyChartNut.series" chart-options="$ctrl.dailyChartNut.options">
+	</canvas>
+
+<h3>Sensor de plagas</h3>
+<canvas id="line" class="chart chart-line" chart-colors="$ctrl.dailyChartBug.colors" chart-data="$ctrl.dailyChartBug.data"
+chart-labels="$ctrl.dailyChartBug.labels" chart-series="$ctrl.dailyChartBug.series" chart-options="$ctrl.dailyChartBug.options">
+	</canvas>
+
+<md-button class="md-raised md-warn" ng-click="$ctrl.closeReporte()">Volver</md-button>
+
 </div>
+
+
+
+
+<div style="height: 80%; overflow-y: auto; overflow-x: auto;" ng-if="$ctrl.selected.name == 'Reporte General'">
+	<canvas id="bar" class="chart chart-bar"
+  chart-data="$ctrl.generalChart.data" chart-labels="$ctrl.generalChart.labels" chart-series="$ctrl.generalChart.series">
+	</canvas>
+<md-button class="md-raised md-warn" ng-click="$ctrl.closeReporteGeneral()">Volver</md-button>
+</div>
+
+
+
+
+
 
 <div ng-if="$ctrl.selected.name == 'Estado de la plantacion'">
 
@@ -53,7 +81,7 @@ chart-labels="$ctrl.dailyChart.labels" chart-series="$ctrl.dailyChart.series" ch
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button class="md-raised md-primary" ng-click="$ctrl.selectReporte($event)">
+          <md-button class="md-raised md-primary" ng-click="$ctrl.selectReporteGeneral($event)">
             Diario
           </md-button>
         </md-menu-item>
